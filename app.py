@@ -22,4 +22,13 @@ traffic_val = {"Low": 0, "Medium": 1, "High": 2}[traffic]
 if st.button("Predict Risk"):
     input_data = np.array([[day_val, time_val, traffic_val]])
     prediction = model.predict(input_data)[0]
-    st.success(f"Predicted Risk Level: {prediction}")
+
+    # Rule-based enhancement (for demo clarity)
+    if traffic == "High" and time == "Evening":
+        risk = "High Risk 🔴"
+    elif traffic == "Medium":
+        risk = "Medium Risk 🟠"
+    else:
+        risk = "Low Risk 🟢"
+
+    st.success(f"Predicted Risk Level: {risk}")
