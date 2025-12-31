@@ -23,7 +23,6 @@ if st.button("Predict Risk"):
     input_data = np.array([[day_val, time_val, traffic_val]])
     prediction = model.predict(input_data)[0]
 
-    # Rule-based enhancement (for demo clarity)
     if traffic == "High" and time == "Evening":
         risk = "High Risk 🔴"
     elif traffic == "Medium":
@@ -32,9 +31,12 @@ if st.button("Predict Risk"):
         risk = "Low Risk 🟢"
 
     st.success(f"Predicted Risk Level: {risk}")
-# Simple numeric mapping for graph
-risk_score = {"Low Risk 🟢": 1, "Medium Risk 🟠": 2, "High Risk 🔴": 3}[risk]
 
-# Show graph using Streamlit (no matplotlib)
-st.bar_chart({"Risk Level": [risk_score]})
+    # Graph (must be INSIDE the button block)
+    risk_score = {
+        "Low Risk 🟢": 1,
+        "Medium Risk 🟠": 2,
+        "High Risk 🔴": 3
+    }[risk]
 
+    st.bar_chart({"Risk Level": [risk_score]})
