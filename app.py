@@ -32,3 +32,14 @@ if st.button("Predict Risk"):
         risk = "Low Risk 🟢"
 
     st.success(f"Predicted Risk Level: {risk}")
+import matplotlib.pyplot as plt
+
+risk_map = {"Low Risk 🟢": 1, "Medium Risk 🟠": 2, "High Risk 🔴": 3}
+risk_value = risk_map[risk]
+
+fig, ax = plt.subplots()
+ax.bar(["Risk Level"], [risk_value], color="orange")
+ax.set_ylim(0, 3)
+ax.set_ylabel("Risk Intensity")
+
+st.pyplot(fig)
