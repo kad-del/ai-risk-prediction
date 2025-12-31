@@ -32,14 +32,9 @@ if st.button("Predict Risk"):
         risk = "Low Risk 🟢"
 
     st.success(f"Predicted Risk Level: {risk}")
-import matplotlib.pyplot as plt
+# Simple numeric mapping for graph
+risk_score = {"Low Risk 🟢": 1, "Medium Risk 🟠": 2, "High Risk 🔴": 3}[risk]
 
-risk_map = {"Low Risk 🟢": 1, "Medium Risk 🟠": 2, "High Risk 🔴": 3}
-risk_value = risk_map[risk]
+# Show graph using Streamlit (no matplotlib)
+st.bar_chart({"Risk Level": [risk_score]})
 
-fig, ax = plt.subplots()
-ax.bar(["Risk Level"], [risk_value], color="orange")
-ax.set_ylim(0, 3)
-ax.set_ylabel("Risk Intensity")
-
-st.pyplot(fig)
