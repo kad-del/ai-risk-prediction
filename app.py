@@ -13,10 +13,12 @@ traffic = st.selectbox("Traffic Level", ["Low", "Medium", "High"])
 day_val = 0 if day == "Weekday" else 1
 time_val = {"Morning": 0, "Afternoon": 1, "Evening": 2}[time]
 traffic_val = {"Low": 0, "Medium": 1, "High": 2}[traffic]
+import pandas as pd
 
-input_data = pd.DataFrame([[traffic_val, time_val, day_val]],
-                          columns=["Traffic", "Time", "Day"])
+input_data = pd.DataFrame(
+    [[crowd, traffic, weather, time]],
+    columns=["crowd_density", "traffic_level", "weather", "time"]
+)
 
-if st.button("Predict Risk"):
-    prediction = model.predict(input_data)[0]
-    st.success(f"Predicted Risk Level: {prediction}")
+prediction = model.predict(input_data)[0]
+
