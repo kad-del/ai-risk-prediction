@@ -20,10 +20,10 @@ traffic_val = {"Low": 0, "Medium": 1, "High": 2}[traffic]
 
 # Prediction button
 if st.button("Predict Risk"):
-    input_data = pd.DataFrame(
-        [[day_val, time_val, traffic_val]],
-        columns=["day", "time", "traffic"]
-    )
+   import numpy as np
+
+input_data = np.array([[day_val, time_val, traffic_val]])
+prediction = model.predict(input_data)[0]
 
     prediction = model.predict(input_data)[0]
     st.success(f"Predicted Risk Level: {prediction}")
